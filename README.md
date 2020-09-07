@@ -20,21 +20,22 @@
 
 ## itemsテーブル
 
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| name             | integer    | null: false                    |
-| price            | integer    | null: false                    |
-| postage          | integer    | null: false                    |
-| text             | text       | null: false                    |
-| category         | integer    | null: false                    |
-| status           | integer    | null: false                    |
-| shipping_origin  | integer    | null: false                    |
-| shipping_date    | integer    | null: false                    |
-| user_id          | integer    | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| name               | string     | null: false                    |
+| price              | integer    | null: false                    |
+| postage            | integer    | null: false                    |
+| text               | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| status_id          | integer    | null: false                    |
+| shipping_origin_id | integer    | null: false                    |
+| shipping_date_id   | integer    | null: false                    |
+| user_id            | integer    | null: false, foreign_key: true |
 
 
 ### Association
 
+- belongs_to :user
 - has_one :order
 
 ## ordersテーブル
@@ -48,19 +49,19 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :buyer
+- has_one :buyer
 
 ## buyersテーブル
 
-| Column      | Type    | Options                        |
-| ----------- | ------- | ------------------------------ |
-| postal      | string  | null: false                    |
-| prefectures | string  | null: false                    |
-| city        | string  | null: false                    |
-| address     | string  | null: false                    |
-| building    | string  |                                |
-| phone       | string  | null: false                    |
-| order_id    | integer | null: false, foreign_key: true |
+| Column         | Type    | Options                        |
+| -------------- | ------- | ------------------------------ |
+| postal         | string  | null: false                    |
+| prefectures_id | integer | null: false                    |
+| city           | string  | null: false                    |
+| address        | string  | null: false                    |
+| building       | string  |                                |
+| phone          | string  | null: false                    |
+| order_id       | integer | null: false, foreign_key: true |
 
 ### Association
-has_one :order
+belongs_to :order
