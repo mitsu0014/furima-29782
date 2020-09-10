@@ -6,7 +6,15 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @item = Item.new
+  end
+
+  def create
     @item = Item.new(item_params)
+    if @item.valid?
+      @item.save
+      redirect_to action: :index
+    end
   end
 
   private
@@ -17,6 +25,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.permit(:image).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :name, :price, :text, :category, :status, :postage,:shipping_origin, :shipping_date).merge(user_id: current_user.id)
   end
 end
