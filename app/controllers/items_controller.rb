@@ -13,7 +13,9 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.valid?
       @item.save
-      redirect_to action: :index
+      redirect_to root_path
+    else
+      render 'new'
     end
   end
 
@@ -25,6 +27,6 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:image, :name, :price, :text, :category, :status, :postage,:shipping_origin, :shipping_date).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :name, :price, :text, :category_id, :status_id, :postage_id,:shipping_origin_id, :shipping_date_id).merge(user_id: current_user.id)
   end
 end
