@@ -5,5 +5,4 @@ Rails.application.routes.draw do
   resources :items do
      resources :orders, only:[:create]
   end
-  resources :users, only: :show
 end
