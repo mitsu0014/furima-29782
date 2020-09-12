@@ -135,8 +135,8 @@
         </li>
         <% else %>
         <li class='list'>
-          <%= link_to 'new', new_item_path do %>
-            <%= render "item_dummy" %>
+          <%= link_to new_item_path do %>
+            <%= render partial: "item_dummy" %>
           <% end %>
         </li>
       <% end %>
