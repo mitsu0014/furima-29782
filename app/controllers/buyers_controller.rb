@@ -2,22 +2,44 @@ class BuyersController < ApplicationController
   before_action :move_to_another, only: [:index]
 
   def index
-      @buyer = Item.find(params[:item_id])
+    @item = Item.find(params[:item_id])
+    @order = OrderBuyer.new
   end
 
+  def create
+    @item = Item.find(params[:item_id])
+    @order = OrderBuyer.new(buyer_params)
+    # binding.pry
+    if @order.valid?
+       pay_item
+       @order.save
+       return redirect_to root_path
+    else
+    render 'index'
+    end
+  end
 
   private
 
+  def pay_item
+    Payjp.api_key = "sk_test_dc0b6fb9a1e61525e5ce7e3c"
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: buyer_params[:token],  
+      currency:'jpy'
+    )
+  end
+
   def buyer_params
-    params.permit(:text, :image, :price).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.permit(:postal, :prefectures_id, :city, :address, :building, :phone, :token, :item_id).merge(user_id: current_user.id)
   end
 
   def move_to_another 
-    @item = Item.find(params[:item_id])
+    @user = Item.find(params[:item_id])
     unless user_signed_in?
       redirect_to new_user_session_path
     end
-    if user_signed_in? && current_user.id == @item.user_id
+    if user_signed_in? && current_user.id == @user.user_id
       redirect_to root_path 
     end
   end
