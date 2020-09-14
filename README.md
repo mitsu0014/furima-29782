@@ -28,7 +28,7 @@
 | text               | text       | null: false                    |
 | category_id        | integer    | null: false                    |
 | status_id          | integer    | null: false                    |
-| shipping_origin_id | integer    | null: false                    |
+| prefectures_id     | integer    | null: false                    |
 | shipping_date_id   | integer    | null: false                    |
 | user_id            | integer    | null: false, foreign_key: true |
 

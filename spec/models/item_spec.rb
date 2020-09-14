@@ -71,7 +71,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '発送元が選択されてないとだめ' do
-      @item.shipping_origin_id = '0'
+      @item.prefectures_id = '0'
       @item.valid?
       expect(@item.errors.full_messages).to include('Shipping origin must be other than 0')
     end

@@ -7,7 +7,7 @@ FactoryBot.define do
     category_id { 2 }
     status_id   { 2 }
     postage_id  { 2 }
-    shipping_origin_id { 2 }
+    prefectures_id { 2 }
     shipping_date_id { 2 }
     association :user
   end
