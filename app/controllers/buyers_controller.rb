@@ -14,7 +14,7 @@ class BuyersController < ApplicationController
        @order.save
        return redirect_to root_path
     else
-    render 'index'
+      render 'index'
     end
   end
 
