@@ -11,3 +11,6 @@ FactoryBot.define do
     birth_day              { Faker::Date.birthday }
   end
 end
+
+# expectedのエラーぶんと差し替える
+# ニックネームアルファベット抜く

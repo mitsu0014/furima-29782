@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order("created_at DESC")
-    # @order = OrderBuyer.find(params[:order_id])
   end
 
   def new
