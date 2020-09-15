@@ -19,6 +19,6 @@ class Item < ApplicationRecord
   validates :shipping_date_id, numericality: { other_than: 1 }
 
   belongs_to :user
-  has_one :orders
+  has_one :order
   has_one_attached :image
 end

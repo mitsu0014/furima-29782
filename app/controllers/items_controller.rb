@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order("created_at DESC")
-    # @order = OrderBuyer.find(params[:order_id])
+    @order = Order.pluck(:item_id)
   end
 
   def new
@@ -22,6 +22,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @order = Order.pluck(:item_id)
   end
 
   def edit
