@@ -35,13 +35,13 @@ RSpec.describe Item, type: :model do
     end
 
     it '販売価格が¥300以上でないとだめ' do
-      @item.price = '299'
+      @item.price = 299
       @item.valid?
       expect(@item.errors.full_messages).to include('Price must be greater than or equal to 300')
     end
 
     it '販売価格が¥9999999以下でないとだめ' do
-      @item.price = '10000000'
+      @item.price = 10000000
       @item.valid?
       expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
     end
@@ -53,31 +53,31 @@ RSpec.describe Item, type: :model do
     end
 
     it 'カテゴリーが選択されてないとだめ' do
-      @item.category_id = '1'
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Category must be other than 1')
     end
 
     it '商品の状態が選択されてないとだめ' do
-      @item.status_id = '1'
+      @item.status_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Status must be other than 1')
     end
 
     it '送料についてが選択されてないとだめ' do
-      @item.postage_id = '1'
+      @item.postage_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Postage must be other than 1')
     end
 
     it '発送元が選択されてないとだめ' do
-      @item.prefectures_id = '0'
+      @item.prefectures_id = 0
       @item.valid?
       expect(@item.errors.full_messages).to include('Shipping origin must be other than 0')
     end
 
     it '発送日が選択されてないとだめ' do
-      @item.status_id = '1'
+      @item.status_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include('Status must be other than 1')
     end

@@ -10,12 +10,6 @@ RSpec.describe Buyer, type: :model do
       expect(@buyer).to be_valid
     end
 
-    # it 'クレジットカード情報が空ではだめ' do
-    #   @buyer.token = nil
-    #   @buyer.valid?
-    #   expect(@buyer.errors.full_messages).to include("card number can't be blank")
-    # end
-
     it '郵便番号が空ではだめ' do
       @buyer.postal = nil
       @buyer.valid?
@@ -23,13 +17,13 @@ RSpec.describe Buyer, type: :model do
     end
 
     it '郵便番号にハイフンがないとだめ' do
-      @buyer.postal = '1234567'
+      @buyer.postal = 1234567
       @buyer.valid?
       expect(@buyer.errors.full_messages).to include()
     end
 
     it '都道府県が選択されてないとだめ' do
-      @buyer.prefectures_id = '0'
+      @buyer.prefectures_id = 0
       @buyer.valid?
       expect(@buyer.errors.full_messages).to include()
     end
@@ -52,10 +46,11 @@ RSpec.describe Buyer, type: :model do
       expect(@buyer.errors.full_messages).to include()
     end
 
-    it '電話番号が11桁以下でないとだめ' do
-      @buyer.phone = '123456789123'
+    it '電話番号が12桁以上ではだめ' do
+      @buyer.phone = 123456789123
       @buyer.valid?
       expect(@buyer.errors.full_messages).to include()
     end
+
   end
 end
