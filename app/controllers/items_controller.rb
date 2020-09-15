@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :set_pluck, only: [:index, :show]
 
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -28,19 +28,19 @@ class ItemsController < ApplicationController
   end
 
   def update
-     @item.update(item_params)
-   if @item.valid?
-      redirect_to item_path(@item.id) 
-   else
-       render 'edit'
-   end
+    @item.update(item_params)
+    if @item.valid?
+      redirect_to item_path(@item.id)
+    else
+      render 'edit'
+    end
   end
 
   def destroy
     if @item.destroy
-       redirect_to root_path
+      redirect_to root_path
     else
-       render 'index'
+      render 'index'
     end
   end
 
