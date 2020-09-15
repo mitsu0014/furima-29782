@@ -1,10 +1,10 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_pluck, only: [:index, :show]
 
   def index
     @items = Item.all.order("created_at DESC")
-    @order = Order.pluck(:item_id)
   end
 
   def new
@@ -22,7 +22,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @order = Order.pluck(:item_id)
   end
 
   def edit
@@ -57,5 +56,9 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_pluck
+    @order = Order.pluck(:item_id)
   end
 end

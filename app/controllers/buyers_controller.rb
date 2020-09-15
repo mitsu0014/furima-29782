@@ -1,13 +1,12 @@
 class BuyersController < ApplicationController
   before_action :move_to_another, only: [:index]
+  before_action :item_find, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @order = OrderBuyer.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order = OrderBuyer.new(buyer_params)
     if @order.valid?
        pay_item
@@ -29,16 +28,24 @@ class BuyersController < ApplicationController
     )
   end
 
+  def item_find
+    @item = Item.find(params[:id])
+  end
+
+
   def buyer_params
     params.permit(:postal, :prefectures_id, :city, :address, :building, :phone, :token, :item_id).merge(user_id: current_user.id)
   end
 
   def move_to_another 
+    @order = Order.pluck(:item_id)
     @user = Item.find(params[:item_id])
     unless user_signed_in?
       redirect_to new_user_session_path
     end
     if user_signed_in? && current_user.id == @user.user_id
+      redirect_to root_path 
+    else @order.include?(@user.id)
       redirect_to root_path 
     end
   end
