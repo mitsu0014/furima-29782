@@ -25,10 +25,10 @@ const pay = () => {
         document.getElementById("exp_month").removeAttribute("name");
         document.getElementById("exp_year").removeAttribute("name");
 
-        // document.getElementById("charge-form").submit();
+        document.getElementById("charge-form").submit();
         document.getElementById("charge-form").reset();
       } else {
-        // document.getElementById("charge-form").submit();
+        document.getElementById("charge-form").submit();
         document.getElementById("charge-form").reset();
       }
     });
