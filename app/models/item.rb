@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_date
 
   with_options presence: true do
+    validates :image
     validates :name
     validates :text
     validates :price, format: { with: /\A[0-9]+\z/ },
